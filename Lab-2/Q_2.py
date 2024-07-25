@@ -1,17 +1,27 @@
 # To solve the quadratic equation.
 
-import cmath
+import math
 
 def solve_quadratic(a, b, c):
     # Calculate the discriminant
-    discriminant = b**2 - 4*a*c
+    dis = b**2 - 4*a*c
+    sqrt_value = math.sqrt(abs(dis))
     
     # Calculate the two solutions
-    root1 = (-b + cmath.sqrt(discriminant)) / (2*a)
-    root2 = (-b - cmath.sqrt(discriminant)) / (2*a)
-    # print(math.sqrt(discriminant))
+    if dis > 0:
+        print("Real and Different Roots ->")
+        print(f"Root - 1 -> {(- b + sqrt_value) / (2 * a)}")
+        print(f"Root - 2 -> {(- b - sqrt_value) / (2 * a)}")
 
-    return root1, root2
+    elif dis == 0:
+        print("Real and same Roots ->")
+        print(f"Root -> {- b / (2 * a)}")
+
+    else:
+        print("Complex Roots ->")
+        print(f"{- b / (2 * a)} + {sqrt_value / (2 * a)}i")
+        print(f"{- b / (2 * a)} - {sqrt_value / (2 * a)}i")
+
 
 def main():
     print("Equation format: ax^2 + bx + c = 0")
@@ -26,13 +36,9 @@ def main():
         print("The coefficient 'a' must not be zero for a quadratic equation.")
         return
     
-    # Solve the quadratic equation
-    root1, root2 = solve_quadratic(a, b, c)
-    
-    # Display the results
+    # Solve the quadratic equation and Display the results
     print(f"The roots of the equation {a}x^2 + {b}x + {c} = 0 are:")
-    print(f"Root 1: {root1}")
-    print(f"Root 2: {root2}")
+    solve_quadratic(a, b, c)
 
 if __name__ == "__main__":
     main()
